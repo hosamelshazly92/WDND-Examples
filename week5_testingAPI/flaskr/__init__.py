@@ -68,6 +68,25 @@ def create_app(test_config=None):
             except:
                 abort(422)
 
+    @app.route('/accounts/<int:account_id>', methods=['PUT'])
+    def replace(account_id):
+        body = request.get_json()
+        new_first_name = body.get("first_name", None)
+        new_last_name = body.get("last_name", None)
+        new_init_balance = int(body.get("balance", None))
+
+        get_account = Account.query.get(account_id)
+
+        get_account.first_name = new_first_name
+        get_account.last_name = new_last_name
+        get_account.balance = new_init_balance
+
+        get_account.update()
+
+        return jsonify({
+            "success": True
+        })
+
     @app.errorhandler(404)
     def not_found(error):
         return jsonify({

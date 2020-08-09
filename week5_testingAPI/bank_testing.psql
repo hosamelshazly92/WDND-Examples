@@ -1,0 +1,6 @@
+INSERT INTO user_account
+(first_name, last_name, balance)
+VALUES
+('Saad', 'Devine', 10000),
+('Sahara', 'Mohammed', 5000),
+('Farhana', 'Travers', 50000);
